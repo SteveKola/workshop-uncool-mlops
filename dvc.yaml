@@ -2,7 +2,7 @@ stages:
 
   get-data:
   
-    cmd: python src/get_data.py
+    cmd: .venv/bin/python src/get_data.py
       --output_folder ${data.output_folder}
 
     deps:
@@ -20,7 +20,7 @@ stages:
 
   split-data:
     cmd: 
-      python src/split_data.py 
+      .venv/bin/python src/split_data.py 
       ${data.output_folder} 
       ${split.output_folder} 
       ${split.test_size}
@@ -36,7 +36,7 @@ stages:
 
   train:
     cmd: 
-      python src/train.py
+      .venv/bin/python src/train.py
       ${split.output_folder}
       ${train.output_folder}
     deps:
@@ -56,7 +56,7 @@ stages:
 
   eval:
     cmd: 
-      python src/eval.py
+      .venv/bin/python src/eval.py
       ${split.output_folder}/val.json
       ${train.output_folder}
       ${eval.output_folder}
